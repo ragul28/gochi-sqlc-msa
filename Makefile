@@ -21,3 +21,12 @@ DB_URL="postgresql://postgres:postgres@127.0.0.1:5432/postgres?sslmode=disable"
 
 db_access:
 	docker exec -it postgres psql $(DB_URL)
+
+create_migrate:
+	migrate create -ext=sql -dir=internal/db/migrations -seq init
+
+migrate_up:
+	migrate -database $(DB_URL) -path internal/db/migrations -verbose up 
+
+migrate_down:
+	migrate -database $(DB_URL) -path internal/db/migrations -verbose  down
