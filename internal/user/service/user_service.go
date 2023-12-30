@@ -1,6 +1,11 @@
 package userservice
 
-import userrepository "github.com/ragul28/gochi-sqlc-msa/internal/user/repository"
+import (
+	"context"
+
+	"github.com/ragul28/gochi-sqlc-msa/internal/user/dto"
+	userrepository "github.com/ragul28/gochi-sqlc-msa/internal/user/repository"
+)
 
 func NewUserService(repo userrepository.UserRepository) UserService {
 	return &service{
@@ -13,9 +18,9 @@ type service struct {
 }
 
 type UserService interface {
-	CreateUser() error
+	CreateUser(ctx context.Context, u dto.CreateUserDto) error
 }
 
-func (s *service) CreateUser() error {
+func (s *service) CreateUser(ctx context.Context, u dto.CreateUserDto) error {
 	return nil
 }
