@@ -1,4 +1,4 @@
-package utils
+package httperr
 
 import "net/http"
 

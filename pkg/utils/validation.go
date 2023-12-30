@@ -6,9 +6,10 @@ import (
 	"strings"
 
 	"github.com/go-playground/validator/v10"
+	httperr "github.com/ragul28/gochi-sqlc-msa/pkg/http_error"
 )
 
-func ValidateHttpData(d interface{}) *RestErr {
+func ValidateHttpData(d interface{}) *httperr.RestErr {
 	val := validator.New(validator.WithRequiredStructEnabled())
 
 	// extract json tag name
@@ -21,10 +22,10 @@ func ValidateHttpData(d interface{}) *RestErr {
 	})
 
 	if err := val.Struct(d); err != nil {
-		var errorsCauses []Fields
+		var errorsCauses []httperr.Fields
 
 		for _, e := range err.(validator.ValidationErrors) {
-			cause := Fields{}
+			cause := httperr.Fields{}
 			fieldName := e.Field()
 
 			switch e.Tag() {
@@ -65,7 +66,7 @@ func ValidateHttpData(d interface{}) *RestErr {
 			errorsCauses = append(errorsCauses, cause)
 		}
 
-		return NewBadRequestValidationError("some fields are invalid", errorsCauses)
+		return httperr.NewBadRequestValidationError("some fields are invalid", errorsCauses)
 	}
 
 	return nil
