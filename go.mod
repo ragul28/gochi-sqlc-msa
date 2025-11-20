@@ -1,6 +1,7 @@
 module github.com/ragul28/gochi-sqlc-msa
 
-go 1.21.4
+go 1.24.0
+
 toolchain go1.24.1
 
 require (
@@ -15,8 +16,8 @@ require (
 	github.com/go-playground/universal-translator v0.18.1 // indirect
 	github.com/google/uuid v1.5.0
 	github.com/leodido/go-urn v1.2.4 // indirect
-	golang.org/x/crypto v0.36.0
-	golang.org/x/net v0.38.0 // indirect
-	golang.org/x/sys v0.31.0 // indirect
-	golang.org/x/text v0.23.0 // indirect
+	golang.org/x/crypto v0.45.0
+	golang.org/x/net v0.47.0 // indirect
+	golang.org/x/sys v0.38.0 // indirect
+	golang.org/x/text v0.31.0 // indirect
 )
